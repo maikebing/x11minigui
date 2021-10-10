@@ -18,4 +18,30 @@ RUN  apt-get update  -yq  && apt install git g++ binutils autoconf automake libt
     apt-get clean && apt-get autoremove   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*	
 RUN   git clone https://gitlab.fmsoft.cn/VincentWei/build-minigui-5.0 && cd build-minigui-5.0/ && cp config.sh myconfig.sh && \
      ./fetch-all.sh  &&   ./build-deps.sh && ./build-minigui.sh
-ENTRYPOINT [ "/build-minigui-5.0/cell-phone-ux-demo/mginit" ]    
+
+# ENTRYPOINT [ "/build-minigui-5.0/cell-phone-ux-demo/mginit" ]    
+RUN  apt-get update  -yq  && apt install  libconfig-dev  -yq && \
+     apt-get install  openssh-server -yq  && \
+	 apt-get install   gdb gdbserver -yq  && \
+     apt-get clean && apt-get autoremove   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*      
+
+
+RUN cd ~/ && \
+	wget https://curl.haxx.se/download/curl-7.67.0.tar.gz && \
+	tar xzf curl-7.67.0.tar.gz &&  cd ~/curl-7.67.0/ && \
+	./buildconf && ./configure  && make  && make install 
+
+
+RUN mkdir /var/run/sshd
+RUN echo 'root:1-q2-w3-e4-r5-t' | chpasswd
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
+
