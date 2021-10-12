@@ -23,8 +23,9 @@ RUN   git clone https://gitlab.fmsoft.cn/VincentWei/build-minigui-5.0 && cd buil
 # ENTRYPOINT [ "/build-minigui-5.0/cell-phone-ux-demo/mginit" ]    
 RUN  apt-get update  -yq  && apt install  libconfig-dev  -yq && \
      apt-get install  openssh-server -yq  && \
-	 apt-get install   gdb gdbserver -yq  && \
+	 apt-get install  gdb gdbserver -yq  && \
      apt-get install libpq-dev -yq && \
+     apt-get install busybox -yq && \
      apt-get clean && apt-get autoremove   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*      
 
 
