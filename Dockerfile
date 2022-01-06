@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM i386/ubuntu:16.04
 LABEL author maikebing <mysticboy@live.com>
 # docker run -ti   --net=host --rm -e DISPLAY=host.docker.internal:0 -v /tmp/.X11-unix:/tmp/.X11-unix  x11ubuntu   --gpus
 ENV DEBIAN_FRONTEND noninteractive
