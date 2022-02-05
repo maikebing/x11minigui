@@ -1,4 +1,4 @@
-FROM i386/ubuntu:16.04
+FROM ubuntu:16.04
 LABEL author maikebing <mysticboy@live.com>
 # docker run -ti   --net=host --rm -e DISPLAY=host.docker.internal:0 -v /tmp/.X11-unix:/tmp/.X11-unix  x11ubuntu   --gpus
 ENV DEBIAN_FRONTEND noninteractive
@@ -22,8 +22,8 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted
 
 RUN   git clone https://gitlab.fmsoft.cn/VincentWei/build-minigui-5.0  && \
       cd build-minigui-5.0/ && cp config.sh myconfig.sh && ./fetch-all.sh   && \
-       sed -i -e 's/mg-tests mg-samples mg-demos cell-phone-ux-demo/mg-samples mg-demos cell-phone-ux-demo/g' build-minigui.sh && \
-    ./build-deps.sh && ./build-minigui.sh ths   -videodrm &&  \
+    #   sed -i -e 's/mg-tests mg-samples mg-demos cell-phone-ux-demo/mg-samples mg-demos cell-phone-ux-demo/g' build-minigui.sh && \
+      ./build-deps.sh && ./build-minigui.sh ths &&  \
       cd .. && rm  ./build-minigui-5.0 -rf
 
  
