@@ -18,6 +18,7 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted
 	apt-get install  gdb gdbserver -yq  && \
     apt-get install libpq-dev -yq && \
     apt-get install busybox -yq && \
+    apt-get install curl -yq && \
     apt-get clean && apt-get autoremove   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*	
 
 RUN   git clone https://gitlab.fmsoft.cn/VincentWei/build-minigui-5.0  && \
@@ -27,11 +28,11 @@ RUN   git clone https://gitlab.fmsoft.cn/VincentWei/build-minigui-5.0  && \
       cd .. && rm  ./build-minigui-5.0 -rf
 
  
-RUN cd ~/ && \
-	wget https://curl.haxx.se/download/curl-7.67.0.tar.gz && \
-	tar xzf curl-7.67.0.tar.gz &&  cd ~/curl-7.67.0/ && \
-	./buildconf && ./configure  && make  && make install && \
-    rm  ~/curl-7.67.0/ -rf
+# RUN cd ~/ && \
+# 	wget https://curl.haxx.se/download/curl-7.67.0.tar.gz && \
+# 	tar xzf curl-7.67.0.tar.gz &&  cd ~/curl-7.67.0/ && \
+# 	./buildconf && ./configure  && make  && make install && \
+#     rm  ~/curl-7.67.0/ -rf
 
 
 RUN mkdir /var/run/sshd 
