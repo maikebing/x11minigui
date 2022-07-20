@@ -17,7 +17,7 @@ RUN  apt-get update  -yq  && apt install git g++ binutils autoconf automake libt
     apt install libinput-dev libdrm-dev libsqlite3-dev libxml2-dev  sudo  libssl-dev -yq &&  \
     apt-get clean && apt-get autoremove   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*	
 RUN   git clone https://gitlab.fmsoft.cn/VincentWei/build-minigui-5.0 && cd build-minigui-5.0/ && cp config.sh myconfig.sh && \
-     ./fetch-all.sh  &&   ./build-deps.sh && ./build-minigui.sh ths  -splash  -videopcxvfb -videodrm -savescreen -aboutdlg  -pngsupport  -webpsupport  -clipboard &&  \
+     ./fetch-all.sh  &&   ./build-deps.sh && ./build-minigui.sh ths -splash -videopcxvfb -videodrm -savescreen -aboutdlg -pngsupport -webpsupport -pixman &&  \
      cd .. && rm  ./build-minigui-5.0 -rf
 
 # ENTRYPOINT [ "/build-minigui-5.0/cell-phone-ux-demo/mginit" ]    
