@@ -28,11 +28,11 @@ RUN   git clone https://gitlab.fmsoft.cn/VincentWei/build-minigui-5.0  && \
       cd .. && rm  ./build-minigui-5.0 -rf
 
  
-# RUN cd ~/ && \
-# 	wget https://curl.haxx.se/download/curl-7.67.0.tar.gz && \
-# 	tar xzf curl-7.67.0.tar.gz &&  cd ~/curl-7.67.0/ && \
-# 	./buildconf && ./configure  && make  && make install && \
-#     rm  ~/curl-7.67.0/ -rf
+RUN cd ~/ && \
+	wget https://curl.haxx.se/download/curl-7.67.0.tar.gz && \
+	tar xzf curl-7.67.0.tar.gz &&  cd ~/curl-7.67.0/ && \
+	./buildconf && ./configure  && make  && make install && \
+        rm  ~/curl-7.67.0/ -rf
 
 
 RUN mkdir /var/run/sshd 
